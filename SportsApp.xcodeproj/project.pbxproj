@@ -17,6 +17,7 @@
 		B86A41442A191A0B009966EC /* SportsAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86A41432A191A0B009966EC /* SportsAppTests.swift */; };
 		B86A414E2A191A0B009966EC /* SportsAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86A414D2A191A0B009966EC /* SportsAppUITests.swift */; };
 		B86A41502A191A0B009966EC /* SportsAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86A414F2A191A0B009966EC /* SportsAppUITestsLaunchTests.swift */; };
+		B86A415D2A192A9E009966EC /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86A415C2A192A9E009966EC /* HomeCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		B86A41492A191A0B009966EC /* SportsAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SportsAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B86A414D2A191A0B009966EC /* SportsAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsAppUITests.swift; sourceTree = "<group>"; };
 		B86A414F2A191A0B009966EC /* SportsAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B86A415C2A192A9E009966EC /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 				B86A41372A191A0B009966EC /* LaunchScreen.storyboard */,
 				B86A413A2A191A0B009966EC /* Info.plist */,
 				B86A41322A191A0A009966EC /* SportsApp.xcdatamodeld */,
+				B86A415C2A192A9E009966EC /* HomeCollectionViewCell.swift */,
 			);
 			path = SportsApp;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B86A415D2A192A9E009966EC /* HomeCollectionViewCell.swift in Sources */,
 				B86A412E2A191A0A009966EC /* ViewController.swift in Sources */,
 				B86A412A2A191A0A009966EC /* AppDelegate.swift in Sources */,
 				B86A41342A191A0A009966EC /* SportsApp.xcdatamodeld in Sources */,
