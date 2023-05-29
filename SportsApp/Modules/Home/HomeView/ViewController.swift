@@ -8,6 +8,17 @@
 import UIKit
 
 class ViewController: UIViewController , UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        homeCollection.delegate = self
+        homeCollection.dataSource = self
+        let layout = homeCollection.collectionViewLayout as! UICollectionViewFlowLayout
+
+        layout.itemSize = CGSize(width: homeCollection.bounds.width*0.6, height: homeCollection.bounds.width*0.3)
+        
+        
+        
+    }
     var colors = [UIColor(named: "red" ) , UIColor(named: "blue")]
     var names = ["FOOTBALL" , "BASKETBALL" , "TENNIS" , "CRICKET"]
     var images = [UIImage(named: "football2") , UIImage(named: "basketball") , UIImage(named: "tennis") , UIImage(named: "cricket")]
@@ -21,28 +32,26 @@ class ViewController: UIViewController , UICollectionViewDelegate , UICollection
         let cell = homeCollection.dequeueReusableCell(withReuseIdentifier: "home", for: indexPath) as! HomeCollectionViewCell
         cell.sportsLabel.text = names[indexPath.row]
         cell.sportsImage.image = images[indexPath.row]
-        cell.backgroundColor = UIColor(red: 0.8, green: 0.9, blue: 1.0, alpha: 1.0)
+        cell.layer.cornerRadius = cell.frame.size.height / 10
+        
+        
         return cell
     }
+    
    
 
     
 
     @IBOutlet weak var homeCollection: UICollectionView!
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        homeCollection.delegate = self
-        homeCollection.dataSource = self
-        let layout = homeCollection.collectionViewLayout as! UICollectionViewFlowLayout
-       layout.sectionInset = UIEdgeInsets(top: 10, left:20, bottom: 0, right:20)
-        layout.minimumLineSpacing = 10
-        layout.itemSize = CGSize(width: homeCollection.bounds.width*0.48, height: homeCollection.bounds.width*0.6)
-        
-        
-        
-    }
-    
    
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        var leagues = storyboard?.instantiateViewController(withIdentifier: "leagues") as! LeaguesTableViewController
+        leagues.modalPresentationStyle = .fullScreen
+        leagues.modalTransitionStyle = .crossDissolve
+        leagues.label = names[indexPath.row]
+        self.present(leagues, animated: true)
+    }
 
 }
 
