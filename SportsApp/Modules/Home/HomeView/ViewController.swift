@@ -50,7 +50,7 @@ class ViewController: UIViewController , UICollectionViewDelegate , UICollection
         leagues.modalPresentationStyle = .fullScreen
         leagues.modalTransitionStyle = .crossDissolve
         leagues.label = names[indexPath.row]
-        self.present(leagues, animated: true)
+        navigationController?.pushViewController(leagues, animated: true)
     }
 
 }

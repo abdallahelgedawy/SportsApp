@@ -160,14 +160,14 @@ class LeaguesTableViewController: UITableViewController , LeaguesProtocol,  UISe
             leagueDetails.modalPresentationStyle = .fullScreen
             leagueDetails.modalTransitionStyle = .crossDissolve
             leagueDetails.leagueId = filteredResults[indexPath.row]?.league_key
-            self.present(leagueDetails, animated: true)
+            self.navigationController?.pushViewController(leagueDetails, animated: true)
         }
         else if(isSearched == false){
             leagueDetails.label = label
             leagueDetails.modalPresentationStyle = .fullScreen
             leagueDetails.modalTransitionStyle = .crossDissolve
             leagueDetails.leagueId = data[indexPath.row]?.league_key
-            self.present(leagueDetails, animated: true)
+            self.navigationController?.pushViewController(leagueDetails, animated: true)
         }
     }
 }

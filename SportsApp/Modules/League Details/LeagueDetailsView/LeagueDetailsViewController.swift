@@ -28,7 +28,7 @@ class LeagueDetailsViewController: UIViewController   {
     override func viewDidLoad() {
         super.viewDidLoad()
         print(label)
-        
+
         networkIndicator.color=UIColor.orange
         networkIndicator.center=view.center
         networkIndicator.startAnimating()
@@ -209,9 +209,9 @@ extension LeagueDetailsViewController : UICollectionViewDelegate , UICollectionV
                 return cell
             }
             else{
-                let homeImage = URL(string: data2[indexPath.row]!.home_team_logo!)
+                let homeImage = URL(string: data2[indexPath.row]!.home_team_logo ?? "notfound")
                 cell.homeImage.sd_setImage(with: homeImage , placeholderImage: UIImage(named: "notfound"))
-                let awayImage = URL(string: data2[indexPath.row]!.away_team_logo!)
+                let awayImage = URL(string: data2[indexPath.row]!.away_team_logo ?? "notfound")
                 cell.myAwayImage.sd_setImage(with: awayImage , placeholderImage: UIImage(named: "notfound"))
                 cell.myawayLabel.adjustsFontSizeToFitWidth = true
                 cell.homeLabel.adjustsFontSizeToFitWidth = true
@@ -219,8 +219,8 @@ extension LeagueDetailsViewController : UICollectionViewDelegate , UICollectionV
                 cell.myawayLabel.text = data2[indexPath.row]?.event_home_team
                 cell.homeLabel.text = data2[indexPath.row]?.event_away_team
                 cell.vsLabel.text = "VS"
-                cell.dateLabel.text = ""
-                cell.timeLabel.text = data2[indexPath.row]?.event_time
+                cell.dateLabel.text = data2[indexPath.row]?.event_final_result
+                cell.timeLabel.text = ""
                 cell.layer.cornerRadius = cell.frame.size.height/2
                 return cell
             }
@@ -302,6 +302,29 @@ extension LeagueDetailsViewController : UICollectionViewDelegate , UICollectionV
             self.leagueDetailsCollection.reloadData()
         }
     }
-   
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch (indexPath.section){
+        case 2 :
+            print(indexPath.row ,indexPath.section)
+            if(label == "FOOTBALL"){
+                let detailsTeams = storyboard?.instantiateViewController(withIdentifier: "teamDetails") as? TeamDetailsViewController
+                detailsTeams?.modalPresentationStyle = .fullScreen
+                detailsTeams!.id = logos[indexPath.row]?.team_key
+                detailsTeams?.modalTransitionStyle = .crossDissolve
+                self.navigationController?.pushViewController(detailsTeams!, animated: true)
+            }
+            else{
+                let alertController = UIAlertController(title: "Alert", message: "No Team Details Available", preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default) { (_) in
+                    }
+                    
+                    alertController.addAction(okAction)
+                    
+                    present(alertController, animated: true, completion: nil)
+            }
+        default:
+            print("Cannot go to the next screen")
+        }
+    }
     
 }

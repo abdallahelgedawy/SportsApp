@@ -71,7 +71,21 @@ class NetworkService {
             guard let result = try? JSONDecoder().decode(allTeams.self, from: data!) else{return}
             print("i will send data from teams network")
             compilationHandler(result.result)
+           
            // print("aaaa \(result.resultTeams![0].team_name)")
+        }
+        compilationHandler(nil)
+        task.resume()
+
+    }
+    static func fetchPlayers(compilationHandler : @escaping ([teams]?)->Void , url : URL){
+        let request = URLRequest(url:url)
+        let session = URLSession(configuration: .default)
+        let task = session.dataTask(with: request){
+            [self] data, response, error in
+            guard let result = try? JSONDecoder().decode(allTeams.self, from: data!) else{return}
+            compilationHandler(result.result)
+            print("aaaas", result.result?[0].players?[0].player_name)
         }
         compilationHandler(nil)
         task.resume()

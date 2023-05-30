@@ -40,6 +40,19 @@ class teams : Decodable{
     var team_key : Int?
     var team_name : String?
     var team_logo : String?
+    var players : [allPlayers]?
+    var coaches : [allCoaches]?
+}
+class allPlayers : Decodable{
+    var player_name: String?
+    var player_number : String?
+    var player_type : String?
+    var player_age : String?
+    var player_image : String?
+
+}
+class allCoaches : Decodable{
+    var coach_name : String?
 }
 
 

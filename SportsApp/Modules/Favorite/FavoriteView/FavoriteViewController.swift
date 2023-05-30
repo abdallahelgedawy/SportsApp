@@ -13,11 +13,15 @@ class FavoriteViewController: UIViewController  , UITableViewDataSource , UITabl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        tabBarController?.tabBar.isHidden = false
         table.dataSource = self
         table.delegate = self
         table.backgroundColor = UIColor.black
        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        
+        tabBarController?.tabBar.isHidden = false
     }
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
