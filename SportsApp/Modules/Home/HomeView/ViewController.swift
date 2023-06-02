@@ -6,10 +6,13 @@
 //
 
 import UIKit
+import Reachability
 
 class ViewController: UIViewController , UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout {
+    var reachability : Reachability?
     override func viewDidLoad() {
         super.viewDidLoad()
+         reachability = try? Reachability()
         homeCollection.delegate = self
         homeCollection.dataSource = self
         let layout = homeCollection.collectionViewLayout as! UICollectionViewFlowLayout
@@ -46,11 +49,22 @@ class ViewController: UIViewController , UICollectionViewDelegate , UICollection
    
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        var leagues = storyboard?.instantiateViewController(withIdentifier: "leagues") as! LeaguesTableViewController
-        leagues.modalPresentationStyle = .fullScreen
-        leagues.modalTransitionStyle = .crossDissolve
-        leagues.label = names[indexPath.row]
-        navigationController?.pushViewController(leagues, animated: true)
+        if(reachability?.connection == Reachability.Connection.unavailable){
+            let alertController = UIAlertController(title: "Alert", message: "Check Your Internet Connection!", preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "OK", style: .default) { (_) in
+                }
+                
+                alertController.addAction(okAction)
+                
+                present(alertController, animated: true, completion: nil)
+        }
+        else{
+            var leagues = storyboard?.instantiateViewController(withIdentifier: "leagues") as! LeaguesTableViewController
+            leagues.modalPresentationStyle = .fullScreen
+            leagues.modalTransitionStyle = .crossDissolve
+            leagues.label = names[indexPath.row]
+            navigationController?.pushViewController(leagues, animated: true)
+        }
     }
 
 }

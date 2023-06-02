@@ -7,10 +7,11 @@
 
 import UIKit
 import SDWebImage
+import Reachability
 
 class LeaguesTableViewController: UITableViewController , LeaguesProtocol,  UISearchBarDelegate {
    
-    
+    var reachability : Reachability?
     var label : String?
     var data : [leagues?] = []
     var filteredResults: [leagues?] = []
@@ -23,6 +24,7 @@ class LeaguesTableViewController: UITableViewController , LeaguesProtocol,  UISe
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        reachability = try? Reachability()
         searchController = UISearchController(searchResultsController: nil)
           searchController.obscuresBackgroundDuringPresentation = false
           searchController.searchBar.placeholder = "Search"
@@ -154,20 +156,31 @@ class LeaguesTableViewController: UITableViewController , LeaguesProtocol,  UISe
         }
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        var leagueDetails = storyboard?.instantiateViewController(withIdentifier: "leagueDetails") as! LeagueDetailsViewController
-        if(isSearched == true){
-            leagueDetails.label = label
-            leagueDetails.modalPresentationStyle = .fullScreen
-            leagueDetails.modalTransitionStyle = .crossDissolve
-            leagueDetails.leagueId = filteredResults[indexPath.row]?.league_key
-            self.navigationController?.pushViewController(leagueDetails, animated: true)
+        if(reachability?.connection == Reachability.Connection.unavailable){
+            let alertController = UIAlertController(title: "Alert", message: "Check Your Internet Connection!", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default) { (_) in
+            }
+            
+            alertController.addAction(okAction)
+            
+            present(alertController, animated: true, completion: nil)
         }
-        else if(isSearched == false){
-            leagueDetails.label = label
-            leagueDetails.modalPresentationStyle = .fullScreen
-            leagueDetails.modalTransitionStyle = .crossDissolve
-            leagueDetails.leagueId = data[indexPath.row]?.league_key
-            self.navigationController?.pushViewController(leagueDetails, animated: true)
+        else{
+            var leagueDetails = storyboard?.instantiateViewController(withIdentifier: "leagueDetails") as! LeagueDetailsViewController
+            if(isSearched == true){
+                leagueDetails.label = label
+                leagueDetails.modalPresentationStyle = .fullScreen
+                leagueDetails.modalTransitionStyle = .crossDissolve
+                leagueDetails.leagueId = filteredResults[indexPath.row]?.league_key
+                self.navigationController?.pushViewController(leagueDetails, animated: true)
+            }
+            else if(isSearched == false){
+                leagueDetails.label = label
+                leagueDetails.modalPresentationStyle = .fullScreen
+                leagueDetails.modalTransitionStyle = .crossDissolve
+                leagueDetails.leagueId = data[indexPath.row]?.league_key
+                self.navigationController?.pushViewController(leagueDetails, animated: true)
+            }
         }
     }
 }

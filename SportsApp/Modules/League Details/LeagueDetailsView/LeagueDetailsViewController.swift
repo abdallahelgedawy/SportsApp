@@ -7,6 +7,7 @@
 
 import UIKit
 import SDWebImage
+import Reachability
 protocol LeagueDetailsProtoocol{
     func updateData(data : [leagues?])
     func updateLatest(data : [leagues?])
@@ -16,7 +17,7 @@ protocol LeagueDetailsProtoocol{
 
 class LeagueDetailsViewController: UIViewController   {
     
-    
+    var reachability : Reachability?
     @IBOutlet weak var leagueDetailsCollection: UICollectionView!
     var leagueId : Int?
     var data : [leagues?] = []
@@ -28,7 +29,7 @@ class LeagueDetailsViewController: UIViewController   {
     override func viewDidLoad() {
         super.viewDidLoad()
         print(label)
-
+        reachability = try? Reachability()
         networkIndicator.color=UIColor.orange
         networkIndicator.center=view.center
         networkIndicator.startAnimating()
@@ -303,28 +304,38 @@ extension LeagueDetailsViewController : UICollectionViewDelegate , UICollectionV
         }
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        switch (indexPath.section){
-        case 2 :
-            print(indexPath.row ,indexPath.section)
-            if(label == "FOOTBALL"){
-                let detailsTeams = storyboard?.instantiateViewController(withIdentifier: "teamDetails") as? TeamDetailsViewController
-                detailsTeams?.modalPresentationStyle = .fullScreen
-                detailsTeams!.id = logos[indexPath.row]?.team_key
-                detailsTeams?.modalTransitionStyle = .crossDissolve
-                self.navigationController?.pushViewController(detailsTeams!, animated: true)
+        if(reachability?.connection == Reachability.Connection.unavailable){
+            let alertController = UIAlertController(title: "Alert", message: "Check Your Internet Connection!", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default) { (_) in
             }
-            else{
-                let alertController = UIAlertController(title: "Alert", message: "No Team Details Available", preferredStyle: .alert)
+            
+            alertController.addAction(okAction)
+            
+            present(alertController, animated: true, completion: nil)
+        }
+        else{
+            switch (indexPath.section){
+            case 2 :
+                print(indexPath.row ,indexPath.section)
+                if(label == "FOOTBALL"){
+                    let detailsTeams = storyboard?.instantiateViewController(withIdentifier: "teamDetails") as? TeamDetailsViewController
+                    detailsTeams?.modalPresentationStyle = .fullScreen
+                    detailsTeams!.id = logos[indexPath.row]?.team_key
+                    detailsTeams?.modalTransitionStyle = .crossDissolve
+                    self.navigationController?.pushViewController(detailsTeams!, animated: true)
+                }
+                else{
+                    let alertController = UIAlertController(title: "Alert", message: "No Team Details Available", preferredStyle: .alert)
                     let okAction = UIAlertAction(title: "OK", style: .default) { (_) in
                     }
                     
                     alertController.addAction(okAction)
                     
                     present(alertController, animated: true, completion: nil)
+                }
+            default:
+                print("Cannot go to the next screen")
             }
-        default:
-            print("Cannot go to the next screen")
         }
     }
-    
 }

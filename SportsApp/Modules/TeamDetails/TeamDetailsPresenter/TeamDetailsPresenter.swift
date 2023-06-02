@@ -8,6 +8,7 @@
 import Foundation
 class TeamDetailsPresenter{
     var presenter : TeamDetailsProtocol?
+    var database = CacheService.getInstance
     func attachView(view : TeamDetailsProtocol){
         self.presenter = view
     }
@@ -19,5 +20,11 @@ class TeamDetailsPresenter{
             self.presenter?.updatePlayers(data: players ?? [] )
             
         }, url: url!)
+    }
+    func insertInDatabase(team : teams , league : leagues){
+        database.insertTeam(data: league, dataTeams: team) { Bool
+            in
+            print("Added")
+        }
     }
 }

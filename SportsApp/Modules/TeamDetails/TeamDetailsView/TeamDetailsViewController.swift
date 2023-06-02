@@ -15,12 +15,14 @@ class TeamDetailsViewController: UIViewController {
     var coachArray : [allCoaches] = []
     @IBOutlet weak var teamNameLabel: UILabel!
     var presenter : TeamDetailsPresenter?
+    var league = leagues()
    
     @IBOutlet weak var coachNameLabel: UILabel!
     let networkIndicator=UIActivityIndicatorView(style: .large)
     @IBOutlet weak var teamDetailsCollection: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        league.league_key = id
         let swipeGesture = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(handleSwipeGesture(_:)))
         swipeGesture.edges = .left
         view.addGestureRecognizer(swipeGesture)
@@ -41,9 +43,9 @@ class TeamDetailsViewController: UIViewController {
   
     @IBAction func favButton(_ sender: UIButton) {
         let alertController = UIAlertController(title: "Alert", message: "Are you sure you want to add this item to favorite?", preferredStyle: .alert)
-            
+       
             let okAction = UIAlertAction(title: "Yes", style: .default) { (_) in
-          
+                self.presenter?.insertInDatabase(team: self.teamData[0], league: self.league)
             }
             
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in

@@ -516,7 +516,7 @@
                                     <collectionViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="home" id="Zxb-yI-akx" customClass="HomeCollectionViewCell" customModule="SportsApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="185" height="319"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="apM-E6-hgu">
+                                        <collectionViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="apM-E6-hgu">
                                             <rect key="frame" x="0.0" y="0.0" width="185" height="319"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nM4-bu-KNl">
@@ -556,10 +556,6 @@
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstItem="apM-E6-hgu" firstAttribute="leading" secondItem="Zxb-yI-akx" secondAttribute="leadingMargin" constant="-8" id="WHg-TU-qJA"/>
-                                            <constraint firstItem="apM-E6-hgu" firstAttribute="top" secondItem="Zxb-yI-akx" secondAttribute="topMargin" constant="-8" id="mgu-sU-x1l"/>
-                                        </constraints>
                                         <size key="customSize" width="185" height="319"/>
                                         <connections>
                                             <outlet property="sportsImage" destination="ZCT-8S-imc" id="cnm-Ed-2pr"/>

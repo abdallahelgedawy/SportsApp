@@ -42,6 +42,7 @@
 		B8B5AB3D2A1BE44A0018BD62 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B5AB3C2A1BE44A0018BD62 /* Constants.swift */; };
 		B8B5AB422A1BEC340018BD62 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B5AB412A1BEC340018BD62 /* NetworkService.swift */; };
 		B8B5AB462A1BEDF10018BD62 /* CacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B5AB452A1BEDF10018BD62 /* CacheService.swift */; };
+		B8C569FE2A26A50C00DA8434 /* FavoritePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C569FD2A26A50C00DA8434 /* FavoritePresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +105,7 @@
 		B8B5AB3C2A1BE44A0018BD62 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B8B5AB412A1BEC340018BD62 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		B8B5AB452A1BEDF10018BD62 /* CacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheService.swift; sourceTree = "<group>"; };
+		B8C569FD2A26A50C00DA8434 /* FavoritePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePresenter.swift; sourceTree = "<group>"; };
 		DC08D2205FA8DBFA6D08821E /* Pods_SportsApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SportsApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8E191D81A7D874B9517BE1F /* Pods-SportsApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportsApp.release.xcconfig"; path = "Target Support Files/Pods-SportsApp/Pods-SportsApp.release.xcconfig"; sourceTree = "<group>"; };
 		F757E64200EBDABEE92D4803 /* Pods_SportsApp_SportsAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SportsApp_SportsAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -358,6 +360,7 @@
 		B8B5AB4B2A1BEEF20018BD62 /* FavoritePresenter */ = {
 			isa = PBXGroup;
 			children = (
+				B8C569FD2A26A50C00DA8434 /* FavoritePresenter.swift */,
 			);
 			path = FavoritePresenter;
 			sourceTree = "<group>";
@@ -657,6 +660,7 @@
 				B8B5AB392A1BDC040018BD62 /* LeaguesTableViewController.swift in Sources */,
 				B8B5AB3D2A1BE44A0018BD62 /* Constants.swift in Sources */,
 				B82563172A1E6D7C00AD626A /* LeagueDetailsViewController.swift in Sources */,
+				B8C569FE2A26A50C00DA8434 /* FavoritePresenter.swift in Sources */,
 				B8B5AB462A1BEDF10018BD62 /* CacheService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
