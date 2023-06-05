@@ -33,7 +33,7 @@ class LeagueDetailsPresenter{
     func getLogoTeam(url : URL , id : Int){
         let result = url.absoluteString + "\(id)"
         let url = URL(string: result)
-        print("abdallah \(url)")
+        print("dido \(url)")
         NetworkService.fetchTeams(compilationHandler: { teams in
             print("iam here recieve data from Api teams")
             self.view?.updateTeams(data: teams ?? [])

@@ -23,5 +23,14 @@ final class MockNetworkServiceTest: XCTestCase {
         }
         waitForExpectations(timeout: 5)
     }
+    func testfetchDataShouldFail(){
+        mocknetworkService = MockNetworkService(shouldReturnError: true)
+        let myExpectation = expectation(description: "Waiting for the Data")
+        mocknetworkService.fetchData { items  in
+           XCTAssertNil(items)
+            myExpectation.fulfill()
+            }
+            
+        waitForExpectations(timeout: 5)}
 
 }

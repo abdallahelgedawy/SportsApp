@@ -46,11 +46,9 @@ class NetworkService {
             
             do {
                 let result = try JSONDecoder().decode(allLeagues.self, from: data)
-//                print("this is result el gedo",result.result![0].home_team_logo!)
+                print("i will send data from teams network")
                 completionHandler(result.result)
                 print(result.result?[0].event_first_player)
-               // print(result.result!)
-              //  print(result.result![0].event_first_player!)
                
             } catch {
                 completionHandler(nil)
@@ -64,30 +62,49 @@ class NetworkService {
     static func fetchTeams(compilationHandler : @escaping (([teams]?)->Void) , url : URL){
         print("i will send data from teams network before decodeing")
         let request = URLRequest(url:url)
-     
+         print(url)
         let session = URLSession(configuration: .default)
         let task = session.dataTask(with: request){
             [self] data, response, error in
-            guard let result = try? JSONDecoder().decode(allTeams.self, from: data!) else{return}
-            print("i will send data from teams network")
-            compilationHandler(result.result)
-           
-           // print("aaaa \(result.resultTeams![0].team_name)")
+            guard let data = data else{
+                print(error?.localizedDescription ?? "Error: No data")
+                return}
+            do{
+                let result = try JSONDecoder().decode(allTeams.self, from: data)
+                print("i will send data from teams network")
+                compilationHandler(result.result)
+                
+                // print("aaaa \(result.resultTeams![0].team_name)")
+            }catch{
+                compilationHandler(nil)
+            }
         }
-        compilationHandler(nil)
+        
         task.resume()
 
     }
     static func fetchPlayers(compilationHandler : @escaping ([teams]?)->Void , url : URL){
+        print("this is url for hit",url)
         let request = URLRequest(url:url)
+        print("alo" , url)
         let session = URLSession(configuration: .default)
         let task = session.dataTask(with: request){
             [self] data, response, error in
-            guard let result = try? JSONDecoder().decode(allTeams.self, from: data!) else{return}
-            compilationHandler(result.result)
-            print("aaaas", result.result?[0].players?[0].player_name)
+            guard let data = data else{
+                print(error?.localizedDescription ?? "Error: No data")
+                compilationHandler(nil)
+                return
+            }
+            do{
+                 let result = try JSONDecoder().decode(allTeams.self, from: data)
+                compilationHandler(result.result)
+                print("aaaas", result.result?[0].players?[0].player_name)
+                print(result.result!)
+            }catch{
+                compilationHandler(nil)
+            }
         }
-        compilationHandler(nil)
+       
         task.resume()
 
     }

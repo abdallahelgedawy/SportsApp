@@ -70,7 +70,7 @@ class LeagueDetailsViewController: UIViewController   {
             detailsLeaguePresenter?.getDetalailedLatest(url: resultLatest!, id: leagueId!)
         }
         else if(label == "TENNIS") {
-            let url = Constants.url + "/tennis/?met=Fixtures&APIkey=" + Constants.apiKey +  "&from=2023-05-28&to=2023-06-06&leagueId="
+            let url = Constants.url + "/tennis/?met=Fixtures&APIkey=" + Constants.apiKey +  "&from=2023-05-28&to=2023-06-30&leagueId="
             let result = URL(string: url)
             detailsLeaguePresenter?.getDetalailedLeagues(url: result!, id: leagueId!)
             let urlLogo = Constants.url + "/tennis/?met=Teams&APIkey=" + Constants.apiKey + "&leagueId="

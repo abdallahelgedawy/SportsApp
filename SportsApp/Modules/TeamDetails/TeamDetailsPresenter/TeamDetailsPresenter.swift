@@ -15,7 +15,7 @@ class TeamDetailsPresenter{
     func getPlayers(url : URL , id : Int){
         let result = url.absoluteString + "\(id)"
         let url = URL(string: result)
-        print(url)
+        print("gedo" ,url)
         NetworkService.fetchPlayers(compilationHandler: { players in
             self.presenter?.updatePlayers(data: players ?? [] )
             
